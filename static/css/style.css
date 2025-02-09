@@ -1,0 +1,56 @@
+.upload-container {
+    border: 2px dashed var(--bs-border-color);
+    border-radius: 10px;
+    padding: 2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.upload-container:hover {
+    border-color: var(--bs-primary);
+    background-color: rgba(var(--bs-primary-rgb), 0.1);
+}
+
+.upload-container.dragover {
+    border-color: var(--bs-success);
+    background-color: rgba(var(--bs-success-rgb), 0.1);
+}
+
+.preview-container {
+    background-color: var(--bs-dark);
+    border-radius: 10px;
+    padding: 1rem;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.preview-image {
+    max-height: 300px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+
+.sample-image {
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.sample-image:hover {
+    transform: scale(1.05);
+}
+
+#processingSpinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.error-message {
+    color: var(--bs-danger);
+    text-align: center;
+    margin-top: 1rem;
+}
