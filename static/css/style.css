@@ -96,6 +96,18 @@
     box-shadow: 0 4px 8px rgba(var(--bs-purple-rgb), 0.05);
 }
 
+[data-bs-theme="light"] .btn-primary {
+    background-color: rgba(var(--bs-purple-rgb), 0.8);
+    border-color: var(--bs-purple);
+    color: var(--bs-white);
+}
+
+[data-bs-theme="light"] .btn-primary:hover {
+    background-color: var(--bs-purple);
+    border-color: var(--bs-purple);
+}
+
+
 /* Additional theme transition styles */
 html {
     transition: background-color 0.3s ease, color 0.3s ease;
