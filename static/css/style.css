@@ -74,7 +74,21 @@
     background: rgba(var(--bs-purple-rgb), 0.2);
 }
 
+/* Light theme specific styles */
+[data-bs-theme="light"] {
+    background-color: var(--bs-light);
+}
+
 [data-bs-theme="light"] .preview-container {
     background-color: var(--bs-light);
     border: 1px solid var(--bs-border-color);
+    box-shadow: 0 0 15px rgba(var(--bs-purple-rgb), 0.05);
+}
+
+[data-bs-theme="light"] .upload-container {
+    border-color: var(--bs-gray-400);
+}
+
+[data-bs-theme="light"] .sample-image {
+    box-shadow: 0 4px 8px rgba(var(--bs-purple-rgb), 0.05);
 }
