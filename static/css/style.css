@@ -99,12 +99,13 @@
 [data-bs-theme="light"] .btn-primary {
     background-color: rgba(var(--bs-purple-rgb), 0.8);
     border-color: var(--bs-purple);
-    color: var(--bs-white);
+    color: var(--bs-dark);
 }
 
 [data-bs-theme="light"] .btn-primary:hover {
     background-color: var(--bs-purple);
     border-color: var(--bs-purple);
+    color: var(--bs-dark);
 }
 
 
