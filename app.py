@@ -3,6 +3,7 @@ import requests
 from flask import Flask, request, send_file, jsonify, render_template
 from werkzeug.utils import secure_filename
 from flask_sqlalchemy import SQLAlchemy
+from dotenv import load_dotenv
 import logging
 from datetime import datetime
 
@@ -10,16 +11,22 @@ from datetime import datetime
 app = Flask(__name__)
 logging.basicConfig(level=logging.DEBUG)
 
-# Database configuration
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL')
+# Load environment variables from .env file
+load_dotenv()
+
+# Database configuration (hardcoded values)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')  # Replace with your DB credentials
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 
 # Import models after db initialization
 from models import ImageProcess
 
-# Configure upload folder
-UPLOAD_FOLDER = '/tmp'
+# Configure upload folder for Windows
+UPLOAD_FOLDER = os.path.join(os.getcwd(), 'uploads')  # Creates an 'uploads' folder in your project directory
+if not os.path.exists(UPLOAD_FOLDER):
+    os.makedirs(UPLOAD_FOLDER)  # Create the directory if it doesn't exist
+
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def allowed_file(filename):
@@ -45,7 +52,7 @@ def remove_background():
     try:
         # Save uploaded file temporarily
         filename = secure_filename(file.filename)
-        filepath = os.path.join(UPLOAD_FOLDER, filename)
+        filepath = os.path.join(UPLOAD_FOLDER, filename)  # Correctly handles paths on Windows
         file.save(filepath)
 
         # Create database record
@@ -58,11 +65,11 @@ def remove_background():
         db.session.add(image_process)
         db.session.commit()
 
-        # Call remove.bg API
+        # Call remove.bg API (hardcoded API key)
         response = requests.post(
             'https://api.remove.bg/v1.0/removebg',
             files={'image_file': open(filepath, 'rb')},
-            headers={'X-Api-Key': os.getenv('REMOVE_BG_API_KEY')},
+            headers={'X-Api-Key': os.getenv('REMOVE_BG_API_KEY')},  # Replace with your API key
         )
 
         if response.status_code != 200:
