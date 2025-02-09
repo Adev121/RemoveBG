@@ -78,6 +78,7 @@
 /* Light theme specific styles */
 [data-bs-theme="light"] {
     background-color: var(--bs-light);
+    color: var(--bs-dark);
 }
 
 [data-bs-theme="light"] .preview-container {
@@ -88,6 +89,7 @@
 
 [data-bs-theme="light"] .upload-container {
     border-color: var(--bs-gray-400);
+    color: var(--bs-dark);
 }
 
 [data-bs-theme="light"] .sample-image {
@@ -96,18 +98,37 @@
 
 /* Additional theme transition styles */
 html {
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 body {
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease;
     min-height: 100vh;
 }
 
 [data-bs-theme="light"] body {
     background-color: var(--bs-light);
+    color: var(--bs-dark);
 }
 
 [data-bs-theme="dark"] body {
     background-color: var(--bs-dark);
+    color: var(--bs-light);
+}
+
+/* Additional text color transitions */
+h1, h2, h3, h4, h5, h6, p, span, label {
+    transition: color 0.3s ease;
+}
+
+[data-bs-theme="light"] h1,
+[data-bs-theme="light"] h2,
+[data-bs-theme="light"] h3,
+[data-bs-theme="light"] h4,
+[data-bs-theme="light"] h5,
+[data-bs-theme="light"] h6,
+[data-bs-theme="light"] p,
+[data-bs-theme="light"] span,
+[data-bs-theme="light"] label {
+    color: var(--bs-dark);
 }
